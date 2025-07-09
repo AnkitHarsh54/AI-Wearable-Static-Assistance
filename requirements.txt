@@ -1,7 +1,7 @@
 streamlit
 SpeechRecognition
 langchain_community
-google-generativeai
+groq
 PyMuPDF
 gdown
 numpy
