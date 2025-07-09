@@ -1,6 +1,8 @@
 streamlit
 SpeechRecognition
 langchain
+langchain_openai
+langchain_community
 openai
 pyttsx3
 PyMuPDF
@@ -9,4 +11,3 @@ numpy
 requests
 python-dotenv
 pydub
-
