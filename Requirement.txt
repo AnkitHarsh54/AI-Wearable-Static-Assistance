@@ -3,7 +3,6 @@ pydub
 numpy              
 requests           
 streamlit
-vosk
 sounddevice
 langchain
 openai
@@ -12,3 +11,5 @@ PyMuPDF
 gdown
 numpy
 requests
+SpeechRecognition
+pyaudio
