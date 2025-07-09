@@ -1,5 +1,3 @@
-# stt.py
-
 import speech_recognition as sr
 import streamlit as st
 
@@ -11,17 +9,15 @@ def listen_once():
 
     recognizer = sr.Recognizer()
 
-    # Show instructions to user
     st.info("Listening... please speak into your microphone.")
 
     with sr.Microphone() as source:
-        # Optionally adjust for ambient noise
         recognizer.adjust_for_ambient_noise(source, duration=0.5)
 
         audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
 
     try:
-        # Use Google's free speech-to-text service
+
         text = recognizer.recognize_google(audio)
         return text
     except sr.UnknownValueError:
