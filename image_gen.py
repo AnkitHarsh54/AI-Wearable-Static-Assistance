@@ -1,19 +1,16 @@
-# image_gen.py
-
 from huggingface_hub import InferenceClient
 import streamlit as st
 import base64
 
 def generate_image(prompt):
-    # Load your Hugging Face token from Streamlit secrets
     hf_token = st.secrets["HF_TOKEN"]
 
-    # Example model - you can replace this!
+   
     model_id = "stabilityai/stable-diffusion-2-1"
 
     client = InferenceClient(model=model_id, token=hf_token)
 
-    # Call the Hugging Face image generation API
+ 
     image_bytes = client.text_to_image(
         prompt,
         guidance_scale=7.5,
@@ -21,14 +18,10 @@ def generate_image(prompt):
         size=(512, 512)
     )
 
-    # Save image locally if desired
-    # with open("output.png", "wb") as f:
-    #     f.write(image_bytes)
 
-    # Convert bytes to base64 so we can display in Streamlit
     encoded_image = base64.b64encode(image_bytes).decode("utf-8")
 
-    # Build a data URL for embedding
+
     image_url = f"data:image/png;base64,{encoded_image}"
 
     return image_url
