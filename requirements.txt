@@ -1,7 +1,5 @@
 streamlit
 SpeechRecognition
-langchain
-langchain_openai
 langchain_community
 huggingface_hub
 PyMuPDF
