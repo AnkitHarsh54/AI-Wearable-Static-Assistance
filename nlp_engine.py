@@ -2,6 +2,7 @@
 
 from huggingface_hub import InferenceClient
 import streamlit as st
+import traceback
 
 def ask_llm(prompt_text):
     if not prompt_text.strip():
@@ -22,4 +23,5 @@ def ask_llm(prompt_text):
 
     except Exception as e:
         st.error(f"LLM error: {e}")
+        st.code(traceback.format_exc())
         return "Sorry, there was an error talking to the AI model."
