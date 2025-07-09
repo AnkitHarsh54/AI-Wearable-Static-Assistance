@@ -1,9 +1,7 @@
-# pdf_tools.py
-
-import fitz  # PyMuPDF
+import fitz  
 
 def extract_text_from_pdf(uploaded_file):
-    # uploaded_file is a file-like object from Streamlit
+    
     text = ""
     with fitz.open(stream=uploaded_file.read(), filetype="pdf") as pdf:
         for page in pdf:
