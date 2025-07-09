@@ -1,21 +1,34 @@
 # image_gen.py
 
-from openai import OpenAI
-import os
+from huggingface_hub import InferenceClient
+import streamlit as st
+import base64
 
 def generate_image(prompt):
-    api_key = os.getenv("OPENAI_API_KEY")
+    # Load your Hugging Face token from Streamlit secrets
+    hf_token = st.secrets["HF_TOKEN"]
 
-    if api_key is None:
-        raise ValueError("OPENAI_API_KEY environment variable not set.")
+    # Example model - you can replace this!
+    model_id = "stabilityai/stable-diffusion-2-1"
 
-    client = OpenAI(api_key=api_key)
+    client = InferenceClient(model=model_id, token=hf_token)
 
-    response = client.images.generate(
-        model="dall-e-3",
-        prompt=prompt,
-        n=1,
-        size="1024x1024"
+    # Call the Hugging Face image generation API
+    image_bytes = client.text_to_image(
+        prompt,
+        guidance_scale=7.5,
+        num_inference_steps=30,
+        size=(512, 512)
     )
 
-    return response.data[0].url
+    # Save image locally if desired
+    # with open("output.png", "wb") as f:
+    #     f.write(image_bytes)
+
+    # Convert bytes to base64 so we can display in Streamlit
+    encoded_image = base64.b64encode(image_bytes).decode("utf-8")
+
+    # Build a data URL for embedding
+    image_url = f"data:image/png;base64,{encoded_image}"
+
+    return image_url
