@@ -1,0 +1,1 @@
+# AI-Wearable-Static-Assistance
