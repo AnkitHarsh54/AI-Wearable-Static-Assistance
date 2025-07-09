@@ -3,7 +3,7 @@ import streamlit as st
 import os
 
 # Import your custom modules
-from stt import listen_once
+from speech_to_text import listen_once
 from nlp_engine import ask_llm
 from tts import speak
 from pdf_tools import extract_text_from_pdf, summarize_text
