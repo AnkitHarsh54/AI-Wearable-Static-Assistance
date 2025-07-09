@@ -1,19 +1,24 @@
 # nlp_engine.py
 
-from langchain.chat_models import ChatOpenAI
-import os
-def ask_llm(prompt_text):
-    try:
-        llm = ChatOpenAI(
-            model="gpt-3.5-turbo",
-            api_key=os.getenv("OPENAI_API_KEY"),
-            temperature=0.2,
-        )
-        response = llm.invoke(prompt_text)
-        return response.content
-    except Exception as e:
-        print(f"LLM error: {e}")
-        return "Sorry, there was an error talking to the AI model."
+import streamlit as st
+from huggingface_hub import InferenceClient
 
-    response = llm.predict(prompt_text)
-    return response
+def ask_llm(prompt_text):
+    if not prompt_text.strip():
+        return "Please enter a question."
+
+    try:
+        hf_token = st.secrets["HF_TOKEN"]
+        
+        # Example model - change to any you like!
+        model_id = "google/flan-t5-base"
+        
+        client = InferenceClient(model=model_id, token=hf_token)
+        result = client.text_generation(
+            prompt_text,
+            max_new_tokens=200,
+        )
+        return result
+    except Exception as e:
+        st.error(f"LLM error: {e}")
+        return "Sorry, there was an error talking to the AI model."
