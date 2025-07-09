@@ -5,15 +5,36 @@ import sounddevice as sd
 import queue
 import json
 import os
+import zipfile
+import gdown
 
-# Download and unzip a Vosk model if you haven't already.
-# Example model: https://alphacephei.com/vosk/models
+# Your Google Drive file ID for the zipped model
+# Replace this with the correct file ID of your ZIP
+file_id = "10iMmI354TbSGwwMubWn1yt2jB27OPG4G"
 
+# Path to unzip the model
 model_path = "model-en"
 
+# If model folder does not exist, download and extract
 if not os.path.exists(model_path):
-    raise RuntimeError(f"Vosk model not found at {model_path}. Download it and unzip.")
+    print("Model folder not found. Downloading from Google Drive...")
 
+    url = f"https://drive.google.com/uc?id={file_id}"
+    output_zip = "vosk_model.zip"
+
+    # Download the zip file
+    gdown.download(url, output_zip, quiet=False)
+
+    # Extract the zip
+    with zipfile.ZipFile(output_zip, 'r') as zip_ref:
+        zip_ref.extractall(model_path)
+
+    # Delete the zip file
+    os.remove(output_zip)
+
+    print(f"Model downloaded and extracted to {model_path}")
+
+# Initialize Vosk model
 model = vosk.Model(model_path)
 q = queue.Queue()
 
@@ -32,4 +53,3 @@ def listen_once():
                 result = json.loads(rec.Result())
                 text = result.get("text", "")
                 return text
-
