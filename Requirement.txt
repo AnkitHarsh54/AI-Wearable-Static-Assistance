@@ -5,3 +5,4 @@ langchain
 openai
 pyttsx3
 PyMuPDF
+gdown
