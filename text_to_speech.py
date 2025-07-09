@@ -1,4 +1,3 @@
-# text_to_speech.py
 
 from huggingface_hub import InferenceClient
 import streamlit as st
@@ -9,8 +8,6 @@ def speak(text):
 
     client = InferenceClient(model=model_id, token=hf_token)
 
-    # Generate speech audio (returns bytes)
     audio_bytes = client.text_to_speech(text)
 
-    # Streamlit playback
     st.audio(audio_bytes, format="audio/wav")
