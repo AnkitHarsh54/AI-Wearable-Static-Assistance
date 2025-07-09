@@ -1,6 +1,6 @@
 # nlp_engine.py
 
-from huggingface_hub import InferenceClient
+from groq import Groq
 import streamlit as st
 import traceback
 
@@ -9,17 +9,25 @@ def ask_llm(prompt_text):
         return "Please enter a question."
 
     try:
-        hf_token = st.secrets["HF_TOKEN"]
-        model_id = "google/flan-t5-base"
+        api_key = st.secrets["GROQ_API_KEY"]
 
-        client = InferenceClient(model=model_id, token=hf_token)
+        client = Groq(api_key=api_key)
 
-        result = client.text_generation(
-            prompt_text,
-            max_new_tokens=200,
-            temperature=0.2,
+        completion = client.chat.completions.create(
+            model="mixtral-8x7b-32768",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant."
+                },
+                {
+                    "role": "user",
+                    "content": prompt_text
+                }
+            ]
         )
-        return result
+
+        return completion.choices[0].message.content
 
     except Exception as e:
         st.error(f"LLM error: {e}")
