@@ -10,7 +10,7 @@ import gdown
 
 # Your Google Drive file ID for the zipped model
 # Replace this with the correct file ID of your ZIP
-file_id = "10iMmI354TbSGwwMubWn1yt2jB27OPG4G"
+file_id = "1YvRtM2ZH0_jB1PMoVOng1-FppzmLo3ar"
 
 # Path to unzip the model
 model_path = "model-en"
