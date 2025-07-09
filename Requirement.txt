@@ -1,3 +1,7 @@
+python-dotenv      
+pydub              
+numpy              
+requests           
 streamlit
 vosk
 sounddevice
@@ -6,7 +10,5 @@ openai
 pyttsx3
 PyMuPDF
 gdown
-python-dotenv      # for loading API keys from .env (optional, but useful)
-pydub              # for audio conversion if needed (optional)
-numpy              # required by sounddevice and vosk internally
-requests           # needed by some APIs like OpenAI or gdown internally
+numpy
+requests
