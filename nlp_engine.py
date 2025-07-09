@@ -15,7 +15,5 @@ def ask_llm(prompt_text):
         print(f"LLM error: {e}")
         return "Sorry, there was an error talking to the AI model."
 
-
-
     response = llm.predict(prompt_text)
     return response
