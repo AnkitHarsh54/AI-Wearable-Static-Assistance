@@ -1,0 +1,7 @@
+streamlit
+vosk
+sounddevice
+langchain
+openai
+pyttsx3
+PyMuPDF
