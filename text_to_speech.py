@@ -1,17 +1,16 @@
-from openai import OpenAI
+# text_to_speech.py
+
+from huggingface_hub import InferenceClient
 import streamlit as st
 
-client = OpenAI()
-
 def speak(text):
-    response = client.audio.speech.create(
-        model="tts-1",
-        voice="alloy",
-        input=text,
-        format="wav",
-    )
-    
-    audio_bytes = response.content
-    
+    hf_token = st.secrets["HF_TOKEN"]
+    model_id = "facebook/fastspeech2-en-ljspeech"
+
+    client = InferenceClient(model=model_id, token=hf_token)
+
+    # Generate speech audio (returns bytes)
+    audio_bytes = client.text_to_speech(text)
+
     # Streamlit playback
     st.audio(audio_bytes, format="audio/wav")
