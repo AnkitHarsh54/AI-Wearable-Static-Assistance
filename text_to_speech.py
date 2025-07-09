@@ -1,8 +1,17 @@
+from openai import OpenAI
+import streamlit as st
 
-import pyttsx3
-
-engine = pyttsx3.init()
+client = OpenAI()
 
 def speak(text):
-    engine.say(text)
-    engine.runAndWait()
+    response = client.audio.speech.create(
+        model="tts-1",
+        voice="alloy",
+        input=text,
+        format="wav",
+    )
+    
+    audio_bytes = response.content
+    
+    # Streamlit playback
+    st.audio(audio_bytes, format="audio/wav")
