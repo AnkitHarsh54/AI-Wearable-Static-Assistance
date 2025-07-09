@@ -3,7 +3,7 @@ SpeechRecognition
 langchain
 langchain_openai
 langchain_community
-openai
+huggingface_hub
 PyMuPDF
 gdown
 numpy
