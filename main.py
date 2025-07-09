@@ -1,16 +1,12 @@
-# main.py
 
 import streamlit as st
 import os
-
-# Import your custom modules
 from speech_to_text import listen_once
 from nlp_engine import ask_llm
 from text_to_speech import speak
 from pdf_tools import extract_text_from_pdf, summarize_text
 from image_gen import generate_image
 
-# Set Streamlit page configuration
 st.set_page_config(page_title="AI Wearable/Static Assistant")
 
 st.markdown(
@@ -18,10 +14,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Modes ---
 mode = st.radio("Choose your mode:", ["Text Chat", "Voice Command"])
 
-# --- Text Chat Mode ---
 if mode == "Text Chat":
     user_input = st.text_input("Ask me anything:")
     if st.button("Submit"):
@@ -33,7 +27,6 @@ if mode == "Text Chat":
             if st.checkbox("Speak the answer"):
                 speak(answer)
 
-# --- Voice Command Mode ---
 elif mode == "Voice Command":
     if st.button("Start Listening"):
         recognized_text = listen_once()
@@ -47,7 +40,6 @@ elif mode == "Voice Command":
         else:
             st.warning("No speech recognized.")
 
-# --- PDF Summarization ---
 st.header("📄 PDF Summarization")
 
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
@@ -65,7 +57,6 @@ if uploaded_file is not None:
         if st.checkbox("Speak the summary"):
             speak(summary)
 
-# --- Image Generation ---
 st.header("🎨 Generate Image from Prompt")
 
 prompt = st.text_input("Enter your image description (or speak it!)")
@@ -79,7 +70,6 @@ if st.button("Generate Image"):
     else:
         st.warning("Please enter a text prompt.")
 
-# --- Speech-to-Image ---
 if st.checkbox("Use voice for image prompt"):
     if st.button("Speak Prompt"):
         spoken_prompt = listen_once()
