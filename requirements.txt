@@ -4,7 +4,6 @@ langchain
 langchain_openai
 langchain_community
 openai
-pyttsx3
 PyMuPDF
 gdown
 numpy
