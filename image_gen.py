@@ -1,23 +1,23 @@
-# image_gen.py
-
-import google.generativeai as genai
+from huggingface_hub import InferenceClient
 import streamlit as st
 import base64
 import traceback
 
 def generate_image(prompt: str) -> str:
     try:
-        # Get Gemini API Key
-        api_key = st.secrets["GEMINI_API_KEY"]
-        genai.configure(api_key=api_key)
+        hf_token = st.secrets["HF_TOKEN"]
+        model_id = "stabilityai/sd-turbo"
 
-        model = genai.GenerativeModel("models/imagegeneration")
+        client = InferenceClient(model=model_id, token=hf_token)
 
-        response = model.generate_content(prompt)
+        image_bytes = client.text_to_image(
+            prompt,
+            guidance_scale=5,
+            num_inference_steps=20
+        )
 
-        # Gemini returns base64-encoded image content
-        image_data = response.text.strip().split(",")[-1]
-        image_url = f"data:image/png;base64,{image_data}"
+        encoded_image = base64.b64encode(image_bytes).decode("utf-8")
+        image_url = f"data:image/png;base64,{encoded_image}"
 
         return image_url
 
