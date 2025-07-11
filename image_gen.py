@@ -3,6 +3,7 @@
 from huggingface_hub import InferenceClient
 import streamlit as st
 import base64
+import traceback
 
 def generate_image(prompt: str) -> str:
     """
@@ -27,11 +28,8 @@ def generate_image(prompt: str) -> str:
 
         return image_url
 
-     except Exception as e:
-         import traceback
-         tb = traceback.format_exc()
-         st.error(f"Image generation error: {e}")
-         st.code(tb)
-         return None
-         
-    
+    except Exception as e:
+        tb = traceback.format_exc()
+        st.error(f"Image generation error: {e}")
+        st.code(tb)
+        return None
