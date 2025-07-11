@@ -1,24 +1,11 @@
-# UI
-streamlit>=1.25
-
-# Speech-to-Text
-SpeechRecognition
-assemblyai
-
-# LLMs
-google-generativeai
-
-# PDF handling
-PyMuPDF
-
-# Hugging Face (image generation)
-huggingface_hub
-
-# Audio processing
-pydub
-
-# Utility libraries
-gdown
-numpy
-requests
-python-dotenv
+streamlit==1.28.0
+SpeechRecognition==3.10.0
+assemblyai==0.20.0
+google-generativeai==0.3.2
+PyMuPDF==1.23.9
+huggingface_hub==0.23.2
+pydub==0.25.1
+gdown==5.2.0
+numpy==1.26.4
+requests==2.31.0
+python-dotenv==1.0.1
