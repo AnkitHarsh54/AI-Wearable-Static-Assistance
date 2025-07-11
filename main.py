@@ -70,7 +70,7 @@ st.markdown("""
     ">
         <h1 style="margin-bottom: 10px;">🤖 AI Wearable / Static Assistant</h1>
         <p style="font-size: 1.2rem;">
-            Your all-in-one smart assistant for text, voice, PDFs, and AI-generated images.
+            Your all-in-one smart assistant for text, voice and PDFs.
         </p>
     </div>
 """, unsafe_allow_html=True)
