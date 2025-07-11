@@ -1,60 +1,62 @@
-# AI Wearable / Static Assistant
+# 🤖 AI Wearable / Static Assistant
 
-An AI-powered assistant that:
+Your all-in-one AI-powered assistant for:
 
-✅ Listens to your voice commands  
-✅ Understands natural language questions using modern NLP and LLMs (OpenAI, LangChain)  
-✅ Replies via text and speech  
-✅ Summarizes PDF documents  
-✅ Chats conversationally with context memory  
-✅ Generates images from voice or text prompts using DALL-E or Stable Diffusion  
+- 💬 Text-based conversation (powered by Google Gemini)
+- 🎤 Voice commands with speech-to-text
+- 📄 PDF text extraction and summarization
 
-This project is built to showcase AI capabilities in both wearable and desktop environments.
+Beautifully built using **Streamlit** with sleek UI styling and animations.
 
 ---
 
-## 🚀 Features
+## 🌟 Features
 
-- **Speech-to-Text**
-  - Converts spoken commands into text using Vosk or Whisper
+### 💬 Text Chat
 
-- **Natural Language Understanding**
-  - Handles questions and conversations using LangChain and OpenAI GPT-3.5/4
-
-- **Text-to-Speech**
-  - Responds verbally using pyttsx3
-
-- **PDF Summarization**
-  - Upload any PDF and generate a concise summary
-
-- **Image Generation**
-  - Speak or type a prompt and generate AI images via DALL-E
-
-- **Streamlit UI**
-  - Simple web app interface for static usage
+- Chat directly with Google Gemini.
+- Supports free-form queries and document summaries.
+- Optionally speak out answers using text-to-speech (pyttsx3).
 
 ---
 
-## 🛠 Tech Stack
+### 🎤 Voice Command
 
-- **Python**
-- **Streamlit**
-- **LangChain**
-- **OpenAI APIs**
-- **Vosk / Whisper** (speech recognition)
-- **pyttsx3** (text-to-speech)
-- **PyMuPDF** (PDF parsing)
-- **Stable Diffusion / DALL-E** (image generation)
+- Upload audio recordings (WAV, MP3).
+- Transcribes speech into text via AssemblyAI.
+- Gets smart responses from Gemini based on your spoken question.
+- Optional audio playback of responses.
 
 ---
 
-## 📸 Screenshots
+### 📄 PDF Summarization
 
-*(Add screenshots of your app UI here once it’s running!)*
+- Upload any PDF document.
+- Extracts raw text using PyMuPDF.
+- Summarizes content via Gemini.
+- Speak summaries for easy listening.
 
 ---
 
-## 💻 Running Locally
+## ⚙️ Tech Stack
 
-1. Clone the repository
+- **Frontend:** [Streamlit](https://streamlit.io/)
+    - Custom CSS styling
+    - Responsive UI
+    - Lottie animations
+- **LLM Backend:**
+    - Google Gemini (via google-generativeai)
+- **Voice Processing:**
+    - AssemblyAI for speech-to-text
+    - pyttsx3 for text-to-speech
+    - SpeechRecognition & pydub for audio handling
+- **PDF Tools:**
+    - PyMuPDF for PDF text extraction
+- **Others:**
+    - gdown for file downloads (if needed)
+    - dotenv & Streamlit Secrets for environment variables
+
+---
+
+## 📁 Project Structure
 
