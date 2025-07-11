@@ -1,33 +1,26 @@
-from groq import Groq
-import streamlit as st
-import traceback
+# nlp_engine.py
 
-def ask_llm(prompt_text):
+import google.generativeai as genai
+import streamlit as st
+
+# Configure Gemini once:
+api_key = st.secrets["GEMINI_API_KEY"]
+genai.configure(api_key=api_key)
+
+# Create Gemini model
+model = genai.GenerativeModel("gemini-1.5-flash-latest")
+
+def ask_llm(prompt_text: str) -> str:
+    """
+    Query Gemini LLM with the given prompt text.
+    """
     if not prompt_text.strip():
         return "Please enter a question."
 
     try:
-        api_key = st.secrets["GROQ_API_KEY"]
-
-        client = Groq(api_key=api_key)
-
-        completion = client.chat.completions.create(
-            model="mixtral-8x7b-32768",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a helpful assistant."
-                },
-                {
-                    "role": "user",
-                    "content": prompt_text
-                }
-            ]
-        )
-
-        return completion.choices[0].message.content
+        response = model.generate_content(prompt_text)
+        return response.text
 
     except Exception as e:
         st.error(f"LLM error: {e}")
-        st.code(traceback.format_exc())
         return "Sorry, there was an error talking to the AI model."
