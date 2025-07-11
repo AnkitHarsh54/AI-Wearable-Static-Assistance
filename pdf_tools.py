@@ -1,14 +1,21 @@
-import fitz  
+# pdf_tools.py
 
-def extract_text_from_pdf(uploaded_file):
-    
+import fitz  # PyMuPDF
+from nlp_engine import ask_llm
+
+def extract_text_from_pdf(uploaded_file) -> str:
+    """
+    Extract text from PDF file using PyMuPDF.
+    """
+    doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
     text = ""
-    with fitz.open(stream=uploaded_file.read(), filetype="pdf") as pdf:
-        for page in pdf:
-            text += page.get_text()
+    for page in doc:
+        text += page.get_text()
     return text
 
-def summarize_text(llm_func, text):
-    summary_prompt = f"Summarize this text:\n{text}"
-    summary = llm_func(summary_prompt)
-    return summary
+def summarize_text(llm_function, text: str) -> str:
+    """
+    Summarize given text via Gemini LLM.
+    """
+    prompt = f"Summarize the following document:\n\n{text}"
+    return llm_function(prompt)
