@@ -3,7 +3,6 @@
 import streamlit as st
 from nlp_engine import ask_llm
 from pdf_tools import extract_text_from_pdf, summarize_text
-from image_gen import generate_image
 from speech_to_text import transcribe_audio
 from text_to_speech import speak
 from streamlit_lottie import st_lottie
@@ -77,11 +76,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Tabs
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3= st.tabs([
     "💬 Text Chat",
     "🎤 Voice Command",
-    "📄 PDF Summarization",
-    "🎨 Image Generation"
+    "📄 PDF Summarization"
 ])
 
 # --- Text Chat ---
@@ -138,17 +136,4 @@ with tab3:
                 speak(summary)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- Image Generation ---
-with tab4:
-    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-    st.subheader("🎨 Image Generation")
 
-    prompt = st.text_input("Enter your image prompt:", placeholder="e.g. A futuristic city skyline at sunset")
-    if st.button("Generate Image"):
-        with st.spinner("Creating your artwork..."):
-            image_url = generate_image(prompt)
-        if image_url:
-            st.image(image_url, caption="AI-Generated Image", use_column_width=True)
-        else:
-            st.warning("Image generation failed. Please try again.")
-    st.markdown('</div>', unsafe_allow_html=True)
