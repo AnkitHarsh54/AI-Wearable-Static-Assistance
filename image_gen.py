@@ -27,6 +27,11 @@ def generate_image(prompt: str) -> str:
 
         return image_url
 
-    except Exception as e:
-        st.error(f"Image generation error: {e}")
-        return None
+     except Exception as e:
+         import traceback
+         tb = traceback.format_exc()
+         st.error(f"Image generation error: {e}")
+         st.code(tb)
+         return None
+         
+    
