@@ -15,11 +15,11 @@ def generate_image(prompt: str) -> str:
 
         client = InferenceClient(model=model_id, token=hf_token)
 
+        # Call WITHOUT size argument
         image_bytes = client.text_to_image(
             prompt,
             guidance_scale=7.5,
-            num_inference_steps=30,
-            size=(512, 512)
+            num_inference_steps=30
         )
 
         encoded_image = base64.b64encode(image_bytes).decode("utf-8")
