@@ -1,28 +1,28 @@
-import speech_recognition as sr
+# speech_to_text.py
+
+import assemblyai as aai
 import streamlit as st
+import tempfile
 
-def listen_once():
+# Configure once:
+api_key = st.secrets["ASSEMBLYAI_API_KEY"]
+aai.settings.api_key = api_key
+
+def transcribe_audio(uploaded_file) -> str:
     """
-    Listens to microphone input and converts speech to text
-    using Google Web Speech API via the SpeechRecognition library.
+    Transcribe uploaded audio file using AssemblyAI.
     """
-
-    recognizer = sr.Recognizer()
-
-    st.info("Listening... please speak into your microphone.")
-
-    with sr.Microphone() as source:
-        recognizer.adjust_for_ambient_noise(source, duration=0.5)
-
-        audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
-
     try:
+        # Save uploaded file temporarily
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+            tmp.write(uploaded_file.read())
+            tmp_path = tmp.name
 
-        text = recognizer.recognize_google(audio)
-        return text
-    except sr.UnknownValueError:
-        st.warning("Sorry, I could not understand the audio.")
-        return ""
-    except sr.RequestError as e:
-        st.error(f"Could not request results from Google Speech Recognition service; {e}")
-        return ""
+        transcriber = aai.Transcriber()
+        transcript = transcriber.transcribe(tmp_path)
+
+        return transcript.text
+
+    except Exception as e:
+        st.error(f"Transcription error: {e}")
+        return "Sorry, speech-to-text failed."
