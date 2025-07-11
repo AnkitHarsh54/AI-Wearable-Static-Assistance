@@ -8,7 +8,7 @@ import traceback
 def generate_image(prompt: str) -> str:
     try:
         hf_token = st.secrets["HF_TOKEN"]
-        model_id = "stabilityai/sd-turbo"
+        model_id = "stabilityai/sdxl-turbo"
 
         url = f"https://api-inference.huggingface.co/models/{model_id}"
         headers = {
