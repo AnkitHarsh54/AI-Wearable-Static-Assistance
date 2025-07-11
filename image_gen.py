@@ -1,3 +1,4 @@
+#image_gen.py
 from huggingface_hub import InferenceClient
 import streamlit as st
 import base64
