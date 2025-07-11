@@ -59,4 +59,5 @@ Beautifully built using **Streamlit** with sleek UI styling and animations.
 ---
 
 ## 📁 Project Structure
+<img width="1395" height="889" alt="image" src="https://github.com/user-attachments/assets/d2fd35ba-5870-46e1-b6d6-971e8577bd77" />
 
