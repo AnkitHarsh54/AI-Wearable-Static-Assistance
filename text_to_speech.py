@@ -1,13 +1,23 @@
+# text_to_speech.py
 
-from huggingface_hub import InferenceClient
+import pyttsx3
 import streamlit as st
+import tempfile
 
-def speak(text):
-    hf_token = st.secrets["HF_TOKEN"]
-    model_id = "facebook/fastspeech2-en-ljspeech"
+def speak(text: str):
+    """
+    Generate audio from text using pyttsx3, and play in Streamlit.
+    """
+    try:
+        engine = pyttsx3.init()
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
+            tmp_path = tmp.name
+            engine.save_to_file(text, tmp_path)
+            engine.runAndWait()
 
-    client = InferenceClient(model=model_id, token=hf_token)
+        audio_file = open(tmp_path, 'rb')
+        audio_bytes = audio_file.read()
+        st.audio(audio_bytes, format="audio/mp3")
 
-    audio_bytes = client.text_to_speech(text)
-
-    st.audio(audio_bytes, format="audio/wav")
+    except Exception as e:
+        st.error(f"TTS error: {e}")
