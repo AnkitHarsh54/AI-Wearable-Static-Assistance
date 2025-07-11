@@ -10,3 +10,4 @@ numpy
 requests
 python-dotenv
 pyttsx3
+openai
