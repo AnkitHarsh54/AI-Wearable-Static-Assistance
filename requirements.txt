@@ -1,11 +1,24 @@
-streamlit
+# UI
+streamlit>=1.25
+
+# Speech-to-Text
 SpeechRecognition
-langchain_community
-groq
+assemblyai
+
+# LLMs
+google-generativeai
+
+# PDF handling
 PyMuPDF
+
+# Hugging Face (image generation)
+huggingface_hub
+
+# Audio processing
+pydub
+
+# Utility libraries
 gdown
 numpy
 requests
 python-dotenv
-pydub
-huggingface_hub
