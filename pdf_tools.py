@@ -1,5 +1,3 @@
-# pdf_tools.py
-
 import fitz  # PyMuPDF
 from nlp_engine import ask_llm
 
