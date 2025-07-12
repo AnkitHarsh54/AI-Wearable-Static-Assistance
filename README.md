@@ -61,6 +61,6 @@ Beautifully built using **Streamlit** with sleek UI styling and animations.
 ## 🖼️ Screenshots
 
 Here’s a preview of the AI Wearable / Static Assistant UI:
+<img width="700" height="450" alt="image" src="https://github.com/user-attachments/assets/c6a5321f-0205-4e62-8b09-2170a3a0a5d2" />
 
-<img src="https://github.com/user-attachments/assets/d2fd35ba-5870-46e1-b6d6-971e8577bd77" style="width: 500px; height: auto;" />
 
