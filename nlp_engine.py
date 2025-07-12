@@ -1,13 +1,9 @@
-# nlp_engine.py
-
 import google.generativeai as genai
 import streamlit as st
 
-# Configure Gemini once:
 api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
 
-# Create Gemini model
 model = genai.GenerativeModel("gemini-1.5-flash-latest")
 
 def ask_llm(prompt_text: str) -> str:
