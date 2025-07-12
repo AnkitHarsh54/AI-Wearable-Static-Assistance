@@ -19,7 +19,7 @@ mic_animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_
 
 # Page Config
 st.set_page_config(
-    page_title="AI Wearable / Static Assistant",
+    page_title="OmniAI Assistant",
     page_icon="🤖",
     layout="wide"
 )
@@ -68,7 +68,7 @@ st.markdown("""
         color: white;
         margin-bottom: 3rem;
     ">
-        <h1 style="margin-bottom: 10px;">🤖 AI Wearable / Static Assistant</h1>
+        <h1 style="margin-bottom: 10px;">🤖 OmniAI Assistant</h1>
         <p style="font-size: 1.2rem;">
             Your all-in-one smart assistant for text, voice and PDFs.
         </p>
