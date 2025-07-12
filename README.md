@@ -53,8 +53,8 @@ Beautifully built using **Streamlit** with sleek UI styling and animations.
 - **PDF Tools:**
     - PyMuPDF for PDF text extraction
 - **Others:**
-    - gdown for file downloads (if needed)
-    - dotenv & Streamlit Secrets for environment variables
+    - gdown for file downloads
+    - Streamlit Secrets for environment variables
 
 ---
 
