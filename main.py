@@ -1,5 +1,3 @@
-# main.py
-
 import streamlit as st
 from nlp_engine import ask_llm
 from pdf_tools import extract_text_from_pdf, summarize_text
@@ -8,7 +6,6 @@ from text_to_speech import speak
 from streamlit_lottie import st_lottie
 import requests
 
-# Load Lottie animation for fun!
 def load_lottie_url(url):
     r = requests.get(url)
     if r.status_code != 200:
@@ -17,14 +14,12 @@ def load_lottie_url(url):
 
 mic_animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_q8qssqgz.json")
 
-# Page Config
 st.set_page_config(
     page_title="OmniAI Assistant",
     page_icon="🤖",
     layout="wide"
 )
 
-# Custom CSS Styling
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -58,7 +53,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Hero Section
 st.markdown("""
     <div style="
         background: linear-gradient(90deg, #4A90E2 0%, #357ABD 100%);
@@ -75,14 +69,12 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Tabs
 tab1, tab2, tab3= st.tabs([
     "💬 Text Chat",
     "🎤 Voice Command",
     "📄 PDF Summarization"
 ])
 
-# --- Text Chat ---
 with tab1:
     st.markdown('<div class="custom-card">', unsafe_allow_html=True)
     st.subheader("💬 Text Chat with Gemini")
@@ -95,7 +87,6 @@ with tab1:
             speak(answer)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- Voice Command ---
 with tab2:
     st.markdown('<div class="custom-card">', unsafe_allow_html=True)
     st.subheader("🎤 Voice Command (AssemblyAI)")
@@ -118,7 +109,6 @@ with tab2:
             speak(answer)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- PDF Summarization ---
 with tab3:
     st.markdown('<div class="custom-card">', unsafe_allow_html=True)
     st.subheader("📄 PDF Summarization")
