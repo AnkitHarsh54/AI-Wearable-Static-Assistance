@@ -1,4 +1,4 @@
-# 🤖 AI Wearable / Static Assistant
+# 🤖 OmniAI Assistant
 
 Your all-in-one AI-powered assistant for:
 
